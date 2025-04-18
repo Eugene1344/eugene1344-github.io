@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* Modern Minimalist Style */
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #60a5fa;
+            --text-color: #334155;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.2s forwards;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+        
+        .btn:hover {
+            background-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            overflow: hidden;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .about-text h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .skill {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .skill:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .skill-level {
+            width: 100%;
+            height: 5px;
+            background-color: #e2e8f0;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-level-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+            width: 0;
+            animation: skillLevel 1s ease-out forwards;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 4rem 0;
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .project:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .project:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background-color: #e2e8f0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            overflow: hidden;
+        }
+        
+        .project-img:before {
+            content: 'View Project';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .project:hover .project-img:before {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .project-category {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .pre-line {
+            white-space: pre-line;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes skillLevel {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--level);
+            }
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                width: 100%;
+            }
+            
+            .skills-container {
+                justify-content: center;
+            }
+            
+            .skill {
+                width: calc(50% - 1rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">PORTFOLIO</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#work">Work</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <h1>Creative Portfolio</h1>
+            <p>I design and build beautiful digital experiences that help businesses grow and thrive in the digital world.</p>
+            <a href="#work" class="btn">View My Work</a>
+        </section>
+    </div>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content fade-in">
+                <div class="about-img">Your Photo</div>
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <div class="pre-line">
+                        I’m a senior full-stack developer with 8+ years of experience building scalable, fast, and maintainable web applications. My core expertise is in the MERN stack (MongoDB, Express, React, Node.js), along with strong frontend skills in Vue 3, modern JavaScript, and clean UI architecture.
+
+                        💡 What I Offer:
+                        • Custom full-stack apps (MERN, REST APIs, integrations)
+                        • Modern, component-based frontends (React/Vue)
+                        • CMS work with WordPress (custom themes/plugins, WooCommerce)
+                        • Pixel-perfect UI from Figma/PSD, mobile-first & accessible
+                        • Strong communication and deadline reliability
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill fade-in">
+                    <div class="skill-icon">🎨</div>
+                    <h3 class="skill-name">UI/UX Design</h3>
+                    <p>Creating intuitive and engaging user experiences</p>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--level: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill fade-in">
+                    <div class="skill-icon">💻</div>
+                    <h3 class="skill-name">Web Development</h3>
+                    <p>Building responsive and performant websites</p>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--level: 85%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill fade-in">
+                    <div class="skill-icon">📱</div>
+                    <h3 class="skill-name">Mobile Design</h3>
+                    <p>Creating seamless mobile experiences</p>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--level: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill fade-in">
+                    <div class="skill-icon">🚀</div>
+                    <h3 class="skill-name">JavaScript</h3>
+                    <p>Building interactive web applications</p>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--level: 75%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill fade-in">
+                    <div class="skill-icon">🎭</div>
+                    <h3 class="skill-name">Branding</h3>
+                    <p>Creating distinctive brand identities</p>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--level: 88%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill fade-in">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-name">SEO</h3>
+                    <p>Optimizing websites for search engines</p>
+                    <div class="skill-level">
+                        <div class="skill-level-bar" style="--level: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="work" class="portfolio">
+        <div class="container">
+            <h2 class="section-title fade-in">Selected Works</h2>
+            <div class="projects">
+                <div class="project">
+                    <div class="project-img">Your Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Project Title</h3>
+                        <div class="project-category">Web Design</div>
+                        <p>A brief description of the project and your role in it.</p>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <div class="project-img">Your Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Project Title</h3>
+                        <div class="project-category">UI/UX Design</div>
+                        <p>A brief description of the project and your role in it.</p>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <div class="project-img">Your Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Project Title</h3>
+                        <div class="project-category">Branding</div>
+                        <p>A brief description of the project and your role in it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <!-- Replace # with your actual social media links -->
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">Dribbble</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>© 2025 My Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Scroll animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.15
+        });
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+    </script>
+</body>
+</html>
